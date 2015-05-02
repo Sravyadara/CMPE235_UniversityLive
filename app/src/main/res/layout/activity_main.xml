@@ -27,11 +27,30 @@
     tools:context="com.gimbal.android.sample.AppActivity" >
 
 
-    <ImageButton
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageButton"
+        android:text="Events"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginTop="95dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Downloads"
+        android:layout_marginTop="40dp"
+        android:id="@+id/downloadsButton"
+        android:layout_below="@id/imageButton"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/adminButton"
+        android:text="Administrator"
+        android:layout_marginTop="130dp"
+        android:layout_below="@id/imageButton"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

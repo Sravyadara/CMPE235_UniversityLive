@@ -26,14 +26,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class AppActivity extends Activity {
 
-    ImageButton eventButton ;
-  //  private GimbalEventReceiver gimbalEventReceiver;
+    Button eventButton ;
+    //  private GimbalEventReceiver gimbalEventReceiver;
     //private GimbalEventListAdapter adapter;
 
     @Override
@@ -43,7 +44,7 @@ public class AppActivity extends Activity {
 
         startService(new Intent(this, AppService.class));
 
-       eventButton =(ImageButton)findViewById(R.id.imageButton);
+        eventButton =(Button)findViewById(R.id.imageButton);
         eventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +53,14 @@ public class AppActivity extends Activity {
             }
         });
 
+        Button downloadsButton = (Button) findViewById(R.id.downloadsButton);
+        downloadsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Downloads.class);
+                startActivity(intent);
+            }
+        });
 
        /* startService(new Intent(this, AppService.class));
 
@@ -74,6 +83,16 @@ public class AppActivity extends Activity {
             }
         });*/
 
+         /* ---- Code for Admin page starts here with Admin Button */
+
+        Button adminButton = (Button) findViewById(R.id.adminButton);
+        adminButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AdminPage.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -115,6 +134,10 @@ public class AppActivity extends Activity {
     // --------------------
     // SETTINGS MENU
     // --------------------
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

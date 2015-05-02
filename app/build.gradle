@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 10
+    compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
     packagingOptions {
@@ -13,8 +13,8 @@ android {
 
     defaultConfig {
         applicationId "com.gimbal.android.sample"
-        minSdkVersion 9
-        targetSdkVersion 11
+        minSdkVersion 14
+        targetSdkVersion 21
     }
 
     buildTypes {
@@ -23,6 +23,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    repositories {
+        mavenCentral()
+
+        maven {
+            url "https://raw.github.com/embarkmobile/zxing-android-minimal/mvn-repo/maven-repository/"
+        }
+    }
+
 }
 
 dependencies {
@@ -31,5 +40,8 @@ dependencies {
     compile files('libs/spring-android-core-1.0.1.RELEASE.jar')
     compile files('libs/spring-android-rest-template-1.0.1.RELEASE.jar')
     //compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.google.android.gms:play-services:7.0.0'
+    compile 'com.google.zxing:core:2.2'
+    compile 'com.embarkmobile:zxing-android-minimal:1.2.1@aar'
 }
