@@ -1,9 +1,7 @@
 .gradle
 .idea/*
-app/build/outputs
 local.properties
-.idea/workspace.xml
-.idea/libraries
+.idea
 .DS_Store
-build/**
-app/build/intermediates/**
+build
+app/build
