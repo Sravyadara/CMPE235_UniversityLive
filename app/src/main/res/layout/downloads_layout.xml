@@ -3,10 +3,9 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
    >
 
-    <TextView
+
+    <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textView1"
-        android:autoLink="web"/>
+        android:layout_height="571dp"
+        android:id="@+id/listView" />
 </LinearLayout>

@@ -16,11 +16,6 @@
  */
 package com.gimbal.android.sample;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -29,20 +24,25 @@ import android.widget.Toast;
 import com.gimbal.android.Communication;
 import com.gimbal.android.CommunicationListener;
 import com.gimbal.android.CommunicationManager;
-import com.gimbal.android.Gimbal;
 import com.gimbal.android.PlaceEventListener;
 import com.gimbal.android.PlaceManager;
 import com.gimbal.android.Push;
 import com.gimbal.android.Push.PushType;
 import com.gimbal.android.Visit;
 import com.gimbal.android.sample.GimbalEvent.TYPE;
-import android.content.Context;
+import com.parse.ParseObject;
+
+import java.util.Collection;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class AppService extends Service {
     private static final int MAX_NUM_EVENTS = 100;
     private LinkedList<GimbalEvent> events;
     private PlaceEventListener placeEventListener;
     private CommunicationListener communicationListener;
+
 
     @Override
     public void onCreate() {
@@ -89,8 +89,6 @@ public class AppService extends Service {
                         addEvent(new GimbalEvent(TYPE.COMMUNICATION_INSTANT_PUSH, communication.getTitle(), new Date()));
                     } else {
                         addEvent(new GimbalEvent(TYPE.COMMUNICATION_TIME_PUSH, communication.getURL(), new Date()));
-
-
                     }
                 }
 
@@ -104,24 +102,23 @@ public class AppService extends Service {
                 for (Communication communication : communications) {
 
                     String url = (String)communication.getURL();
+                    System.out.println("MyUrl :" + url);
+                    ParseObject urlObject = new ParseObject("URL");
+                    urlObject.put("Url",url);
+                    urlObject.put("Id","url");
+
+                    urlObject.saveInBackground();
                     Intent i = new Intent(AppService.this,Downloads.class);
-                    i.putExtra("key",url);
+                   // i.putExtra("key",url);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                     Toast.makeText(getApplicationContext(),url,Toast.LENGTH_SHORT).show();
 
                     addEvent(new GimbalEvent(TYPE.NOTIFICATION_CLICKED, communication.getURL(), new Date()));
-
                 }
             }
-
-
         };
-
-
             CommunicationManager.getInstance().addListener(communicationListener);
-
-
         }
 
 

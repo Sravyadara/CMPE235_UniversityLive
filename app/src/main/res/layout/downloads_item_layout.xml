@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    >
+
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_marginTop="3dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/downloads" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/downloadsTitle"
+        android:autoLink="web"
+        android:textStyle="italic"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/img"
+        android:layout_toEndOf="@+id/img" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Published On:"
+        android:id="@+id/publishedText"
+        android:textStyle="bold"
+        android:layout_alignBottom="@+id/img"
+        android:layout_alignLeft="@+id/downloadsTitle"
+        android:layout_alignStart="@+id/downloadsTitle" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/date"
+        android:layout_alignTop="@+id/publishedText"
+        android:layout_toRightOf="@+id/publishedText"
+        android:layout_toEndOf="@+id/publishedText" />
+
+</RelativeLayout>

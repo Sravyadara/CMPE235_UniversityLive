@@ -17,24 +17,54 @@
 package com.gimbal.android.sample;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.View;
 
 import com.gimbal.android.CommunicationManager;
 import com.gimbal.android.Gimbal;
 import com.gimbal.android.PlaceManager;
+import com.parse.FindCallback;
+import com.parse.ParseQuery;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OptInActivity extends Activity {
+
+    private Context context;
+    private String gcmSenderId = "309039147220";
+    private String imei;
+    private List<String> imeiList ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.optin);
         Gimbal.setApiKey(this.getApplication(), "9da1beb6-724c-4735-9e0c-e8dbabe0bdb4");
-        /*Intent mainIntent = new Intent(OptInActivity.this,AppActivity.class);
-        startActivity(mainIntent);*/
+        context  = this.getApplicationContext();
+
+        TelephonyManager mngr = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
+        imei = mngr.getDeviceId();
+
+        ParseQuery<RegistrationDAO> query = ParseQuery.getQuery("Registration");
+        query.whereEqualTo("Role", "Student");
+        imeiList = new ArrayList<String>();
+        query.findInBackground(new FindCallback<RegistrationDAO>() {
+            @Override
+            public void done(List<RegistrationDAO> registrationDAOs, com.parse.ParseException e) {
+                for (RegistrationDAO reg : registrationDAOs) {
+                    if (imei.equals(reg.getImei())) {
+                        System.out.println("IMEI value :" +reg.get("IMEI"));
+                        imeiList.add(reg.getImei());
+                        break;
+                    }
+                }
+            }
+        });
     }
 
     public void onEnableClicked(View view) {
@@ -45,11 +75,12 @@ public class OptInActivity extends Activity {
         Intent mainIntent = new Intent(OptInActivity.this,AppActivity.class);
         startActivity(mainIntent);
 
-        // Setup Push Communication
-        String gcmSenderId = "309039147220"; // <--- SET THIS STRING TO YOUR PUSH SENDER ID HERE (Google API project #) ##
-        registerForPush(gcmSenderId);
 
-        finish();
+        if(imeiList.size() > 0) {
+            registerForPush(gcmSenderId);
+            finish();
+        }
+
     }
 
     private void registerForPush(String gcmSenderId) {
@@ -63,6 +94,8 @@ public class OptInActivity extends Activity {
         PlaceManager.getInstance().stopMonitoring();
         finish();
     }
+
+
 
     public void onPrivacyPolicyClicked(View view) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://your-privacy-policy-url")));

@@ -51,6 +51,7 @@
         android:maxSdkVersion="18" />
 
     <application
+        android:name=".Application"
         android:allowBackup="true"
         android:icon="@drawable/app_icon"
         android:theme="@style/AppTheme" >
