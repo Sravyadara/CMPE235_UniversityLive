@@ -10,23 +10,52 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 public class AddSensor extends Activity {
 
     private static EditText sensorFactoryId;
+    private String floorNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_sensor);
+
+        Spinner floorSpinner = (Spinner) findViewById(R.id.floorSpinner);
+        ArrayList<String> floors = new ArrayList<String>();
+        floors.add("Floor 1");
+        floors.add("Floor 2");
+        floors.add("Floor 3");
+        floors.add("Floor 4");
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, floors);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        floorSpinner.setAdapter(arrayAdapter);
+
+        floorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                floorNumber = parent.getItemAtPosition(position).toString().split(" ")[1];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         try {
             ImageButton scanButton = (ImageButton) findViewById(R.id.scan);
@@ -70,6 +99,7 @@ public class AddSensor extends Activity {
                             try {
                                 JSONObject responseJsonObject = new JSONObject(s);
                                 System.out.println("Printing PUT request Response in Add Sensor Activity : " + responseJsonObject);
+
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -77,7 +107,8 @@ public class AddSensor extends Activity {
                     });
                     try {
                         JSONObject requestObject = new JSONObject();
-                        requestObject.put("name", sensorName.getText().toString());
+                        String name = sensorName.getText().toString() + "_F" + floorNumber;
+                        requestObject.put("name", name);
                         requestObject.put("factory_id", sensorFactoryId.getText().toString());
                         requestObject.put("latitude", Double.parseDouble(latitude.getText().toString()));
                         requestObject.put("longitude", Double.parseDouble(longitude.getText().toString()));

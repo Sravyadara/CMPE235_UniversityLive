@@ -145,12 +145,10 @@
         android:layout_height="wrap_content"
         android:text="Submit"
         android:id="@+id/submitButton"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="75dp"
         android:layout_below="@+id/gridLayout2"
-        android:layout_toLeftOf="@+id/cancelButton"
-        android:layout_toStartOf="@+id/cancelButton"
-        android:layout_marginRight="64dp"
-        android:layout_marginEnd="64dp" />
+        android:layout_toRightOf="@+id/sensorFactoryIdLabel"
+        android:layout_toEndOf="@+id/sensorFactoryIdLabel" />
 
     <Button
         android:layout_width="wrap_content"
@@ -162,5 +160,23 @@
         android:layout_alignEnd="@+id/gridLayout2"
         android:layout_marginRight="70dp"
         android:layout_marginEnd="70dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Select Floor"
+        android:id="@+id/textView"
+        android:layout_below="@+id/gridLayout2"
+        android:layout_toStartOf="@+id/submitButton"
+        android:layout_toLeftOf="@+id/submitButton" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/floorSpinner"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView" />
 
 </RelativeLayout>
