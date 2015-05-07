@@ -17,23 +17,17 @@
 package com.gimbal.android.sample;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.TextView;
 
 public class AppActivity extends Activity {
 
-    Button eventButton ;
+    private Button eventButton ;
+    private Button attendace;
     //  private GimbalEventReceiver gimbalEventReceiver;
     //private GimbalEventListAdapter adapter;
 
@@ -94,6 +88,18 @@ public class AppActivity extends Activity {
             }
         });
 
+
+        //--Calling Attendace Activity--
+
+
+          attendace = (Button)findViewById(R.id.attendance);
+          attendace.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  Intent attendanceIntent = new Intent(getApplicationContext(),Attendance.class);
+                  startActivity(attendanceIntent);
+              }
+          });
 
     }
 

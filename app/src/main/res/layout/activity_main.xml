@@ -53,4 +53,14 @@
         android:layout_marginTop="130dp"
         android:layout_below="@id/imageButton"
         android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Attendance"
+        android:id="@+id/attendance"
+        android:layout_marginTop="70dp"
+        android:layout_below="@+id/adminButton"
+        android:layout_alignLeft="@+id/downloadsButton"
+        android:layout_alignStart="@+id/downloadsButton" />
 </RelativeLayout>

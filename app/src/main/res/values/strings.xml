@@ -40,5 +40,6 @@
     <string name="title_activity_manage_sensors">ManageSensors</string>
     <string name="title_activity_edit_sensor">EditSensor</string>
     <string name="title_activity_add_sensor">AddSensor</string>
+    <string name="title_activity_attendance">Attendance</string>
 
 </resources>

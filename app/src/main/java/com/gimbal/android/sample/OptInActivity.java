@@ -28,6 +28,7 @@ import com.gimbal.android.CommunicationManager;
 import com.gimbal.android.Gimbal;
 import com.gimbal.android.PlaceManager;
 import com.parse.FindCallback;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class OptInActivity extends Activity {
     private String gcmSenderId = "309039147220";
     private String imei;
     private List<String> imeiList ;
+    private List<String> userNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class OptInActivity extends Activity {
         ParseQuery<RegistrationDAO> query = ParseQuery.getQuery("Registration");
         query.whereEqualTo("Role", "Student");
         imeiList = new ArrayList<String>();
+        userNames = new ArrayList<String>();
+        String user;
         query.findInBackground(new FindCallback<RegistrationDAO>() {
             @Override
             public void done(List<RegistrationDAO> registrationDAOs, com.parse.ParseException e) {
@@ -60,6 +64,16 @@ public class OptInActivity extends Activity {
                     if (imei.equals(reg.getImei())) {
                         System.out.println("IMEI value :" +reg.get("IMEI"));
                         imeiList.add(reg.getImei());
+                        userNames.add(reg.getUserName());
+                        String user = userNames.get(0);
+
+                        //Storing the Student Name in Parse
+                        ParseObject studentAttendance = new ParseObject("Attendance");
+                        studentAttendance.put("StudentName",user);
+                        studentAttendance.put("Attendance",true);
+                        studentAttendance.saveInBackground();
+
+
                         break;
                     }
                 }
@@ -71,15 +85,20 @@ public class OptInActivity extends Activity {
         GimbalDAO.setOptInShown(getApplicationContext());
 
         PlaceManager.getInstance().startMonitoring();
-        CommunicationManager.getInstance().startReceivingCommunications();
+        //Check for student
+        System.out.println("IMEIList:"+imeiList);
+        if(imeiList.size() >0) {
+
+
+            CommunicationManager.getInstance().startReceivingCommunications();
+
+
+        }
         Intent mainIntent = new Intent(OptInActivity.this,AppActivity.class);
         startActivity(mainIntent);
-
-
-        if(imeiList.size() > 0) {
-            registerForPush(gcmSenderId);
+        registerForPush(gcmSenderId);
             finish();
-        }
+
 
     }
 

@@ -142,7 +142,6 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCtB0nI5T2x04QOTROuAS44bPAeX14664c" />
 
-
         <activity
             android:name=".ListSensors"
             android:label="@string/title_activity_list_sensors" >
@@ -162,6 +161,10 @@
         <activity
             android:name=".AddSensor"
             android:label="@string/title_activity_add_sensor" >
+        </activity>
+        <activity
+            android:name=".Attendance"
+            android:label="@string/title_activity_attendance" >
         </activity>
     </application>
 

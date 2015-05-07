@@ -72,8 +72,10 @@ public class AppService extends Service {
             public Collection<Communication> presentNotificationForCommunications(Collection<Communication> communications, Visit visit) {
                 for (Communication comm : communications) {
                     if (visit.getDepartureTimeInMillis() == 0L) {
-                        addEvent(new GimbalEvent(TYPE.COMMUNICATION_ENTER, comm.getTitle(), new Date(visit.getArrivalTimeInMillis())));
+                        System.out.println("Checking  PresentVisit function");
+                       addEvent(new GimbalEvent(TYPE.COMMUNICATION_ENTER, comm.getTitle(), new Date(visit.getArrivalTimeInMillis())));
                     } else {
+
                         addEvent(new GimbalEvent(TYPE.COMMUNICATION_EXIT, comm.getTitle(), new Date(visit.getDepartureTimeInMillis())));
                     }
                 }
@@ -85,10 +87,13 @@ public class AppService extends Service {
             @Override
             public Collection<Communication> presentNotificationForCommunications(Collection<Communication> communications, Push push) {
                 for (Communication communication : communications) {
+                    System.out.println("Inside for loop,communication");
                     if (push.getPushType() == PushType.INSTANT) {
+                        System.out.println("Checking Instant eventone");
                         addEvent(new GimbalEvent(TYPE.COMMUNICATION_INSTANT_PUSH, communication.getTitle(), new Date()));
                     } else {
-                        addEvent(new GimbalEvent(TYPE.COMMUNICATION_TIME_PUSH, communication.getURL(), new Date()));
+                        System.out.println("Checking add event");
+                       addEvent(new GimbalEvent(TYPE.COMMUNICATION_TIME_PUSH, communication.getURL(), new Date()));
                     }
                 }
 
