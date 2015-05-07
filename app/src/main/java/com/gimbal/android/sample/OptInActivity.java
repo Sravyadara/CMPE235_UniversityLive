@@ -41,12 +41,12 @@ public class OptInActivity extends Activity {
     private String imei;
     private List<String> imeiList ;
     private List<String> userNames;
-
+    public String user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.optin);
-        Gimbal.setApiKey(this.getApplication(), "9da1beb6-724c-4735-9e0c-e8dbabe0bdb4");
+      //Gimbal.setApiKey(this.getApplication(), "9da1beb6-724c-4735-9e0c-e8dbabe0bdb4");
         context  = this.getApplicationContext();
 
         TelephonyManager mngr = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
@@ -56,7 +56,7 @@ public class OptInActivity extends Activity {
         query.whereEqualTo("Role", "Student");
         imeiList = new ArrayList<String>();
         userNames = new ArrayList<String>();
-        String user;
+
         query.findInBackground(new FindCallback<RegistrationDAO>() {
             @Override
             public void done(List<RegistrationDAO> registrationDAOs, com.parse.ParseException e) {
@@ -65,13 +65,13 @@ public class OptInActivity extends Activity {
                         System.out.println("IMEI value :" +reg.get("IMEI"));
                         imeiList.add(reg.getImei());
                         userNames.add(reg.getUserName());
-                        String user = userNames.get(0);
+                         user = userNames.get(0);
 
-                        //Storing the Student Name in Parse
+                      /*  //Storing the Student Name in Parse
                         ParseObject studentAttendance = new ParseObject("Attendance");
                         studentAttendance.put("StudentName",user);
                         studentAttendance.put("Attendance",true);
-                        studentAttendance.saveInBackground();
+                        studentAttendance.saveInBackground();*/
 
 
                         break;
@@ -89,7 +89,11 @@ public class OptInActivity extends Activity {
         System.out.println("IMEIList:"+imeiList);
         if(imeiList.size() >0) {
 
-
+            //Storing the Student Name in Parse
+            ParseObject studentAttendance = new ParseObject("Attendance");
+            studentAttendance.put("StudentName",user);
+            studentAttendance.put("Attendance",true);
+            studentAttendance.saveInBackground();
             CommunicationManager.getInstance().startReceivingCommunications();
 
 

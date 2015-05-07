@@ -1,17 +1,27 @@
 package com.gimbal.android.sample;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 
-public class Attendance extends ActionBarActivity {
+public class Attendance extends Activity {
+
+    private ListView studentListView;
+    private AttendanceAdapter attendanceAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_layout);
+
+        studentListView = (ListView)findViewById(R.id.attendance_list_view);
+        attendanceAdapter = new AttendanceAdapter(this);
+        studentListView.setAdapter(attendanceAdapter);
+        attendanceAdapter.loadObjects();
+
 
 
 
