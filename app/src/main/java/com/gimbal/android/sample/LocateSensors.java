@@ -56,6 +56,7 @@ public class LocateSensors extends Activity {
             map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
             bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.lucasbuilding1);
+            drawMarkers("Floor 1");
 
             LatLng southWest = new LatLng(37.406888, -121.979740);
             LatLng northEast = new LatLng(37.407376, -121.979104);
@@ -77,7 +78,7 @@ public class LocateSensors extends Activity {
             public void onMapLoaded() {
                 //LatLngBounds bounds = builder.build();
                 //map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 17));
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(37.407376, -121.979104),17);
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(37.407376, -121.979104),18);
                 map.animateCamera(cameraUpdate);
 
             }

@@ -2,7 +2,11 @@ package com.gimbal.android.sample;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -33,6 +37,23 @@ public class AddSensor extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_sensor);
+
+        final EditText latitude = (EditText) findViewById(R.id.sensorLatitudeValue);
+        final EditText longitude = (EditText) findViewById(R.id.sensorLongitudeValue);
+
+        LocationManager locationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        String provider = locationManager.getBestProvider(criteria, false);
+        Location location = locationManager.getLastKnownLocation(provider);
+        if(location!= null) {
+            double lat = location.getLatitude();
+            double lon = location.getLongitude();
+            latitude.setText(""+lat);
+            longitude.setText(""+lon);
+        }else {
+            latitude.setText("No Provider");
+            longitude.setText("No Provider");
+        }
 
         Spinner floorSpinner = (Spinner) findViewById(R.id.floorSpinner);
         ArrayList<String> floors = new ArrayList<String>();
@@ -74,8 +95,7 @@ public class AddSensor extends Activity {
         }
 
         final EditText sensorName = (EditText) findViewById(R.id.sensorNameValue);
-        final EditText latitude = (EditText) findViewById(R.id.sensorLatitudeValue);
-        final EditText longitude = (EditText) findViewById(R.id.sensorLongitudeValue);
+
         final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         Button submitButton = (Button) findViewById(R.id.submitButton);
         Button cancelButton = (Button) findViewById(R.id.cancelButton);
@@ -99,6 +119,8 @@ public class AddSensor extends Activity {
                             try {
                                 JSONObject responseJsonObject = new JSONObject(s);
                                 System.out.println("Printing PUT request Response in Add Sensor Activity : " + responseJsonObject);
+                                Toast.makeText(getApplicationContext(), "Successfully Added Sensor", Toast.LENGTH_LONG).show();
+                                finish();
 
                             } catch (Exception e) {
                                 e.printStackTrace();

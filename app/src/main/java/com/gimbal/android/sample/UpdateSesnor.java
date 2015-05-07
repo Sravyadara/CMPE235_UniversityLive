@@ -43,7 +43,7 @@ public class UpdateSesnor extends AsyncTask<String, Void, String> {
             }else {
                 urlConnection.setRequestMethod("PUT");
             }
-            connectionStatus = urlConnection.getResponseCode();
+            //connectionStatus = urlConnection.getResponseCode();
 
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(urlConnection.getOutputStream());
             outputStreamWriter.write(params[1]);
@@ -63,15 +63,16 @@ public class UpdateSesnor extends AsyncTask<String, Void, String> {
         }catch (IOException e) {
             e.printStackTrace();
         }
-        return sb.toString() + "_" + String.valueOf(connectionStatus);
+        //return sb.toString() + "_" + String.valueOf(connectionStatus);
+        return sb.toString();
     }
 
     @Override
     public void onPostExecute(String result) {
-        String myObjectString = result.split("_")[0];
-        String statusCode = result.split("_")[1];
+        //String myObjectString = result.split("_")[0];
+        //String statusCode = result.split("_")[1];
         try {
-            JSONObject jsonObject = new JSONObject(myObjectString);
+            JSONObject jsonObject = new JSONObject(result);
             sendResult.onProcessFinish(jsonObject.toString());
 
         }catch (Exception e) {
