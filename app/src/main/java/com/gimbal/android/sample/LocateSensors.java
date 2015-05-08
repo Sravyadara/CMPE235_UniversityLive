@@ -50,12 +50,13 @@ public class LocateSensors extends Activity {
         spinner.setAdapter(arrayAdapter);
 
         try {
-            JSONArray jsonArray = new JSONArray(getIntent().getExtras().getString("sensorObject"));
+
 
             map = ((MapFragment) getFragmentManager().findFragmentById(R.id.sensorsMap)).getMap();
             map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
             bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.lucasbuilding1);
+            drawMarkers("Floor 1");
 
             LatLng southWest = new LatLng(37.406888, -121.979740);
             LatLng northEast = new LatLng(37.407376, -121.979104);
@@ -67,14 +68,7 @@ public class LocateSensors extends Activity {
             groundOverlayOptions.transparency(0.5f);
             map.addGroundOverlay(groundOverlayOptions);
 
-            for(int i=0; i<jsonArray.length(); i++){
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Double latitude = jsonObject.getDouble("latitude");
-                Double longitude = jsonObject.getDouble("longitude");
-                LatLng latLng = new LatLng(latitude,longitude);
-                map.addMarker(new MarkerOptions().position(latLng));
-                builder.include(latLng);
-            }
+
 
         }catch (Exception e) {
             e.printStackTrace();
@@ -82,9 +76,9 @@ public class LocateSensors extends Activity {
         map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
-                LatLngBounds bounds = builder.build();
+                //LatLngBounds bounds = builder.build();
                 //map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 17));
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(37.407376, -121.979104),17);
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(37.407376, -121.979104),18);
                 map.animateCamera(cameraUpdate);
 
             }
@@ -96,6 +90,7 @@ public class LocateSensors extends Activity {
                 Toast.makeText(getApplicationContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
                 if(parent.getItemAtPosition(position).toString() == "Floor 2") {
                     bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.lucasbuilding2);
+
                 }else if(parent.getItemAtPosition(position).toString() == "Floor 3") {
                     bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.lucasbuilding3);
                 }else if(parent.getItemAtPosition(position).toString() == "Floor 4") {
@@ -104,8 +99,8 @@ public class LocateSensors extends Activity {
                     bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.lucasbuilding1);
                 }
                 groundOverlayOptions.image(bitmapDescriptor);
-
                 map.clear();
+                drawMarkers(parent.getItemAtPosition(position).toString());
                 map.addGroundOverlay(groundOverlayOptions);
 
             }
@@ -118,6 +113,29 @@ public class LocateSensors extends Activity {
 
     }
 
+    public void drawMarkers(String floor) {
+        String requiredString = "_F" + floor.split(" ")[1];
+
+        try {
+            JSONArray jsonArray = new JSONArray(getIntent().getExtras().getString("sensorObject"));
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                if(jsonObject.getString("name").contains(requiredString)) {
+                    System.out.println("Name of the sensor : " + jsonObject.getString("name"));
+                    Double latitude = jsonObject.getDouble("latitude");
+                    Double longitude = jsonObject.getDouble("longitude");
+                    LatLng latLng = new LatLng(latitude, longitude);
+                    map.addMarker(new MarkerOptions().position(latLng));
+                    //builder.include(latLng);
+                }
+
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
