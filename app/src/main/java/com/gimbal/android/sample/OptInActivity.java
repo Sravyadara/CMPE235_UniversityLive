@@ -31,9 +31,11 @@ import com.parse.FindCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-
 public class OptInActivity extends Activity {
 
     private Context context;
@@ -46,7 +48,7 @@ public class OptInActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.optin);
-      //Gimbal.setApiKey(this.getApplication(), "9da1beb6-724c-4735-9e0c-e8dbabe0bdb4");
+        Gimbal.setApiKey(this.getApplication(), "9da1beb6-724c-4735-9e0c-e8dbabe0bdb4");
         context  = this.getApplicationContext();
 
         TelephonyManager mngr = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
@@ -88,10 +90,15 @@ public class OptInActivity extends Activity {
         //Check for student
         System.out.println("IMEIList:"+imeiList);
         if(imeiList.size() >0) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = Calendar.getInstance().getTime();
+            String  dateNoTime = sdf.format(date);
 
             //Storing the Student Name in Parse
             ParseObject studentAttendance = new ParseObject("Attendance");
             studentAttendance.put("StudentName",user);
+            studentAttendance.put("Date",sdf.format(date));
+            System.out.println("SystemDate:"+dateNoTime);
             studentAttendance.put("Attendance",true);
             studentAttendance.saveInBackground();
             CommunicationManager.getInstance().startReceivingCommunications();

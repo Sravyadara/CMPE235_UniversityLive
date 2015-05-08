@@ -9,6 +9,9 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by sravyadara on 5/6/15.
  */
@@ -19,10 +22,12 @@ public class AttendanceAdapter extends ParseQueryAdapter {
         super(context, new QueryFactory<ParseObject>() {
             @Override
             public ParseQuery<ParseObject> create() {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = new Date();
 
                 ParseQuery query = new ParseQuery("Attendance");
-                query.whereEqualTo("Attendance",true);
-                query.orderByDescending("updatedAt");
+               // query.whereEqualTo("Attendance",true);
+                query.whereEqualTo("Date", sdf.format(date));
                 return query;
 
             }
