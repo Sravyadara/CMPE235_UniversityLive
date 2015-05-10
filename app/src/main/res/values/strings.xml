@@ -41,5 +41,6 @@
     <string name="title_activity_edit_sensor">EditSensor</string>
     <string name="title_activity_add_sensor">AddSensor</string>
     <string name="title_activity_attendance">Attendance</string>
+    <string name="title_activity_new_notification_url">NewNotificationURLActivity</string>
 
 </resources>

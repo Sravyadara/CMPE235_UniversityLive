@@ -166,6 +166,10 @@
             android:name=".Attendance"
             android:label="@string/title_activity_attendance" >
         </activity>
+        <activity
+            android:name=".NewNotificationURLActivity"
+            android:label="@string/title_activity_new_notification_url" >
+        </activity>
     </application>
 
 </manifest>

@@ -32,35 +32,43 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageButton"
         android:text="Events"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="95dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Downloads"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="35dp"
         android:id="@+id/downloadsButton"
-        android:layout_below="@id/imageButton"
-        android:layout_centerHorizontal="true"/>
+        android:layout_below="@+id/imageButton"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/adminButton"
         android:text="Administrator"
-        android:layout_marginTop="130dp"
-        android:layout_below="@id/imageButton"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Attendance"
         android:id="@+id/attendance"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="40dp"
         android:layout_below="@+id/adminButton"
         android:layout_alignLeft="@+id/downloadsButton"
         android:layout_alignStart="@+id/downloadsButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update URL"
+        android:id="@+id/updateurl"
+        android:layout_below="@+id/attendance"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
 </RelativeLayout>

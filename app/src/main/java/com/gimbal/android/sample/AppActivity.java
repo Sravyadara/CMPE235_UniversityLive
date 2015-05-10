@@ -101,6 +101,15 @@ public class AppActivity extends Activity {
               }
           });
 
+
+        Button updateUrlButton = (Button) findViewById(R.id.updateurl);
+        updateUrlButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NewNotificationURLActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
   /*  @Override
