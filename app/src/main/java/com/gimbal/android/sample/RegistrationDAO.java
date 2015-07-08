@@ -15,11 +15,11 @@ public class RegistrationDAO extends ParseObject {
     }
 
     public String getUserName(){
-        return getString("UserName");
+        return getString("User_Name");
     }
 
     public void setUserName(String userName){
-        put("UserName", userName);
+        put("User_Name", userName);
     }
 
     public String getUserId(){

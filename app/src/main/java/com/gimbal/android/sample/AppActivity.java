@@ -24,6 +24,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.parse.ParseException;
+import com.parse.ParseInstallation;
+import com.parse.ParsePush;
+import com.parse.ParseQuery;
+
 public class AppActivity extends Activity {
 
     private Button eventButton ;
@@ -79,37 +84,75 @@ public class AppActivity extends Activity {
 
          /* ---- Code for Admin page starts here with Admin Button */
 
-        Button adminButton = (Button) findViewById(R.id.adminButton);
-        adminButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AdminPage.class);
-                startActivity(intent);
-            }
-        });
-
-
-        //--Calling Attendace Activity--
-
-
-          attendace = (Button)findViewById(R.id.attendance);
-          attendace.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  Intent attendanceIntent = new Intent(getApplicationContext(),Attendance.class);
-                  startActivity(attendanceIntent);
-              }
-          });
-
-
-        Button updateUrlButton = (Button) findViewById(R.id.updateurl);
-        updateUrlButton.setOnClickListener(new View.OnClickListener() {
+//        Button adminButton = (Button) findViewById(R.id.adminButton);
+//        adminButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(), AdminPage.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//
+//        //--Calling Attendace Activity--
+//
+//
+//          attendace = (Button)findViewById(R.id.attendance);
+//          attendace.setOnClickListener(new View.OnClickListener() {
+//              @Override
+//              public void onClick(View v) {
+//                  Intent attendanceIntent = new Intent(getApplicationContext(),Attendance.class);
+//                  startActivity(attendanceIntent);
+//              }
+//          });
+//
+//
+//        Button updateUrlButton = (Button) findViewById(R.id.updateurl);
+//        updateUrlButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), NewNotificationURLActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+        Button appointments = (Button) findViewById(R.id.appointmentBtn);
+        appointments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NewNotificationURLActivity.class);
+                //ParseInstallation.getCurrentInstallation().saveInBackground();
+                ParseInstallation.getCurrentInstallation().getInstallationId();
+                ParseQuery pushQuery = ParseInstallation.getQuery();
+                pushQuery.whereEqualTo("device_id","356567055976557");
+                ParsePush push = new ParsePush();
+                push.setQuery(pushQuery);
+                push.setMessage(" students are waiting for appointments");
+                try {
+                    push.send();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Intent intent = new Intent(getApplicationContext(), Availability.class);
                 startActivity(intent);
             }
         });
+
+        Button chkAppointments = (Button) findViewById(R.id.chkAppointments);
+        chkAppointments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CheckURAppointmentsAdapter.class);
+                startActivity(intent);
+            }
+        });
+        Button profavailability = (Button) findViewById(R.id.chkAvailability);
+        profavailability.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ProfAvailabilityListAdapter.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
   /*  @Override
@@ -168,6 +211,14 @@ public class AppActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void logout(View view){
+        Session session = new Session(getApplicationContext());
+        if(session.getUserDetails() != null){
+            session.logoutUser();
+            Intent intent = new Intent(this, OptInActivity.class);
+            startActivity(intent);
+        }
     }
 
 }

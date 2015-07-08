@@ -89,7 +89,7 @@ public class LocateSensors extends Activity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
                 if(parent.getItemAtPosition(position).toString() == "Floor 2") {
-                    bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.firstdesign);
+                    bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.lucasbuilding2);
 
                 }else if(parent.getItemAtPosition(position).toString() == "Floor 3") {
                     bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.drawable.lucasbuilding3);

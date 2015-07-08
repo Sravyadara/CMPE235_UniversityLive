@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 public class Attendance extends Activity {
 
     private ListView studentListView;
     private AttendanceAdapter attendanceAdapter;
+    static TextView attendanceCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +23,6 @@ public class Attendance extends Activity {
         attendanceAdapter = new AttendanceAdapter(this);
         studentListView.setAdapter(attendanceAdapter);
         attendanceAdapter.loadObjects();
-
-
-
-
-
     }
 
 

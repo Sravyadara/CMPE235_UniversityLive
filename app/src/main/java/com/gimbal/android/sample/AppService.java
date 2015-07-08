@@ -17,8 +17,10 @@
 package com.gimbal.android.sample;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
 import com.gimbal.android.Communication;
@@ -30,8 +32,10 @@ import com.gimbal.android.Push;
 import com.gimbal.android.Push.PushType;
 import com.gimbal.android.Visit;
 import com.gimbal.android.sample.GimbalEvent.TYPE;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
@@ -40,14 +44,22 @@ import java.util.List;
 public class AppService extends Service {
     private static final int MAX_NUM_EVENTS = 100;
     private LinkedList<GimbalEvent> events;
+    public static ArrayList<String> entrySensorID;
+    public static ArrayList<String> exitSensorID;
+    public static ArrayList<Long> arrivalTime;
+    public static ArrayList<Long> exitTime;
     private PlaceEventListener placeEventListener;
     private CommunicationListener communicationListener;
+    public static String IMEI;
 
 
     @Override
     public void onCreate() {
         events = new LinkedList<GimbalEvent>(GimbalDAO.getEvents(getApplicationContext()));
-
+        entrySensorID = new ArrayList<String>();
+        exitSensorID = new ArrayList<String>();
+        arrivalTime = new ArrayList<Long>();
+        exitTime    = new ArrayList<Long>();
       //  Gimbal.setApiKey(this.getApplication(), "9da1beb6-724c-4735-9e0c-e8dbabe0bdb4");
 
         // Setup PlaceEventListener
@@ -56,12 +68,47 @@ public class AppService extends Service {
             @Override
             public void onVisitStart(Visit visit) {
                 addEvent(new GimbalEvent(TYPE.PLACE_ENTER, visit.getPlace().getName(), new Date(visit.getArrivalTimeInMillis())));
+                entrySensorID.add(visit.getPlace().getName());
+                arrivalTime.add(visit.getArrivalTimeInMillis());
                 System.out.println(visit.getPlace().getAttributes());
+                Student profavailability= new Student();
+                TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                IMEI = telephonyManager.getDeviceId();
+
+                try {
+                    profavailability.getStudentDetails(IMEI);
+                    profavailability.getProfessorObjectID(profavailability.userName);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                String role=profavailability.role;
+                if(role.equalsIgnoreCase("Professor"))
+                {
+
+                    try {
+                        profavailability.getProfessorAvailability("yes");
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+
             }
 
             @Override
             public void onVisitEnd(Visit visit) {
                 addEvent(new GimbalEvent(TYPE.PLACE_EXIT, visit.getPlace().getName(), new Date(visit.getDepartureTimeInMillis())));
+                exitSensorID.add(visit.getPlace().getName());
+                exitTime.add(visit.getDepartureTimeInMillis());
+                Student profavailability= new Student();
+                String role=profavailability.role;
+                if(role.equalsIgnoreCase("Professor"))
+                {
+                    try {
+                        profavailability.getProfessorAvailability("no");
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         };
         PlaceManager.getInstance().addListener(placeEventListener);

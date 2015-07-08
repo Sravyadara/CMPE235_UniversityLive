@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/tab1"
+    android:orientation="vertical"
+    android:background="@drawable/plainscreen"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <!-- TextView for the Title-->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/listtitle"
+            android:text="Your Appointments"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:textColor="#000000"
+            />
+
+        <!-- List View -->
+        <ListView
+            android:background="@android:color/transparent"
+            android:cacheColorHint="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent" android:id="@+id/listV_main"/>
+
+    </LinearLayout>
+</LinearLayout>

@@ -21,7 +21,7 @@
 
 
     <string name="app_title">Gimbal Sample App</string>
-    <string name="action_enable">Enable</string>
+    <string name="action_enable">Login</string>
     <string name="action_not_now">Not Now</string>
     <string name="action_privacy_policy">Privacy Policy</string>
     <string name="action_tos">Terms of Use</string>
@@ -42,5 +42,23 @@
     <string name="title_activity_add_sensor">AddSensor</string>
     <string name="title_activity_attendance">Attendance</string>
     <string name="title_activity_new_notification_url">NewNotificationURLActivity</string>
+    <string name="title_activity_availability">Availability</string>
+    <string name="title_activity_no_appointments">NoAppointments</string>
+    <string name="title_activity_appointments_list">AppointmentsList</string>
+    <string name="title_activity_appointments_list_view">AppointmentsListView</string>
+    <string name="title_activity_appointment">Appointment</string>
+    <string name="title_activity_check_urappointments">CheckURAppointments</string>
+    <string name="title_activity_check_urappointments_adapter">CheckURAppointmentsAdapter</string>
+    <string name="title_activity_waiting_list_screen">WaitingListScreen</string>
+    <string name="title_activity_appointments">Appointments</string>
+    <string name="title_activity_professor">ProfessorActivity</string>
+    <string name="title_activity_professor_availability">ProfessorAvailability</string>
+    <string name="title_activity_professor_availability_list">ProfessorAvailabilityList</string>
+    <string name="radio_male">Student</string>
+    <string name="radio_female">Professor</string>
+    <string name="title_activity_user_registration">UserRegistration</string>
+    <string name="title_activity_prof_availability_list_adapter">ProfAvailabilityListAdapter
+    </string>
+    <string name="title_activity_profile_picture">profile_picture</string>
 
 </resources>

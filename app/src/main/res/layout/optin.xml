@@ -17,115 +17,24 @@
     fitness for a specified purpose, and against infringement.
 
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/optin_background"
+    android:background="@drawable/spartloginscreen"
     android:orientation="vertical" >
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="0.22"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="143dp"
-            android:clickable="false"
-            android:text="@string/optin_top_text"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/optin_bottom_text"
-            android:textAppearance="?android:attr/textAppearanceLarge" 
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="0.22"
-        android:orientation="vertical" >
-
-        <Button
-            android:id="@+id/get_started"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:onClick="onEnableClicked"
-            android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp"
-            android:text="@string/action_enable"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/optin_background" />
-
-        <Button
-            android:id="@+id/not_now"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/transparent"
-            android:onClick="onNotNowClicked"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="@string/action_not_now"
-            android:textColor="@color/white" />
-
-    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.22"
-        android:background="@color/optin_background" >
+        android:background="@color/optin_background"
+        android:id="@+id/relativeLayout">
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="22dp"
-            android:clickable="true"
-            android:onClick="onTermsOfServiceClicked"
-            android:text="@string/action_tos"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="26dp"
-            android:autoLink="web"
-            android:clickable="true"
-            android:onClick="onPrivacyPolicyClicked"
-            android:text="@string/action_privacy_policy"
-            android:textColor="@color/white" />
 
     </RelativeLayout>
 
@@ -137,4 +46,95 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/get_started"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:background="@drawable/buttonlogin"
+        android:onClick="onEnableClicked"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:text="@string/action_enable"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/txt_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:clickable="true"
+        android:onClick="onPrivacyPolicyClicked"
+        android:text="@string/action_privacy_policy"
+        android:textColor="#ff000000"
+        android:layout_alignParentBottom="true"
+        />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="onTermsOfServiceClicked"
+        android:text="@string/action_tos"
+        android:textColor="#ff000000"
+        android:layout_alignTop="@+id/textView1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="65dp"
+        android:layout_height="30dp"
+        android:id="@+id/txt_UN"
+        android:hint="User Name"
+        android:background="@drawable/textbox"
+        android:typeface="serif"
+        android:textSize="18dp"
+        android:layout_above="@+id/txt_password"
+        android:layout_alignLeft="@+id/get_started"
+        android:layout_alignRight="@+id/get_started" />
+
+    <EditText
+        android:layout_width="65dp"
+        android:layout_height="30dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/txt_password"
+        android:hint="Password"
+        android:background="@drawable/textbox"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/txt_UN"
+        android:layout_alignStart="@+id/txt_UN"
+        android:layout_alignRight="@+id/txt_UN"
+        android:layout_alignEnd="@+id/txt_UN" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtv_error"
+        android:layout_above="@+id/textView3"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:background="@drawable/buttonlogin"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:text="Sign up"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ff000000"
+        android:layout_below="@+id/get_started"
+        android:layout_alignLeft="@+id/get_started"
+        android:layout_alignStart="@+id/get_started"
+        android:layout_marginTop="31dp" />
+    <!--android:onClick="onEnableClicked"-->
+
+</RelativeLayout>

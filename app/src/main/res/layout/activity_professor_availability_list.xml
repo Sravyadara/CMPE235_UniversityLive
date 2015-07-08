@@ -1,0 +1,40 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+     >
+    <!--  TextView objects are used to place the listView Items-->
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp" />
+    <TextView android:id="@+id/name"
+        android:textSize="18dp"
+        android:typeface="serif"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/photo"/>
+    <TextView android:id="@+id/ListcourseId"
+        android:textSize="14dp"
+        android:typeface="serif"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_toRightOf="@id/photo" />
+    <TextView android:id="@+id/ListcourseName"
+        android:textSize="11dp"
+        android:typeface="serif"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ListcourseId"
+        android:layout_toRightOf="@id/photo" />
+
+</RelativeLayout>
+
+

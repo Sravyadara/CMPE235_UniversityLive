@@ -58,6 +58,8 @@ public class ListSensors extends Activity {
         String jsonArrayString = getIntent().getExtras().getString("sensorObject");
         JSONArray jsonArray = getSensorObject(jsonArrayString);
 
+
+
         @Override
         public int getCount() {
             return jsonArray.length();

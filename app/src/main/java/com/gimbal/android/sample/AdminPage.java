@@ -101,4 +101,12 @@ public class AdminPage extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+    public void logout(View view){
+        Session session = new Session(getApplicationContext());
+        if(session.getUserDetails() != null){
+            session.logoutUser();
+            Intent intent = new Intent(this, OptInActivity.class);
+            startActivity(intent);
+        }
+    }
 }

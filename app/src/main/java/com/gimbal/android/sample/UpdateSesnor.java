@@ -30,9 +30,10 @@ public class UpdateSesnor extends AsyncTask<String, Void, String> {
         int connectionStatus = 0;
         try {
             URL url = new URL(params[0]);
-
-            String API_KEY = "Token " + "token=" + "996bdd4685014fcdacd367bfaf4d54f3";
+            String API_KEY = "Token " + "token=" + "c6d5055280a052cb4376685f691ad477";
+           // String API_KEY = "Token " + "token=" + "996bdd4685014fcdacd367bfaf4d54f3";
             //String API_KEY = "Token " + "token=" + "f6d9f13961552908d74ef56e783dc5a3";
+
 
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestProperty("AUTHORIZATION", API_KEY);

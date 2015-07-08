@@ -49,11 +49,25 @@
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="com.gimbal.android.sample.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.gimbal.android.sample.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
         android:name=".Application"
         android:allowBackup="true"
-        android:icon="@drawable/app_icon"
+        android:icon="@drawable/smart_class"
         android:theme="@style/AppTheme" >
 
         <!--
@@ -169,6 +183,100 @@
         <activity
             android:name=".NewNotificationURLActivity"
             android:label="@string/title_activity_new_notification_url" >
+        </activity>
+        <activity
+            android:name=".Availability"
+            android:label="@string/title_activity_availability" >
+        </activity>
+        <activity
+            android:name=".NoAppointments"
+            android:label="@string/title_activity_no_appointments" >
+        </activity>
+        <activity
+            android:name=".AppointmentsList"
+            android:label="@string/title_activity_appointments_list" >
+        </activity>
+        <activity
+            android:name=".AppointmentsListView"
+            android:label="@string/title_activity_appointments_list_view" >
+        </activity>
+        <activity
+            android:name=".Appointment"
+            android:label="@string/title_activity_appointment" >
+        </activity>
+        <activity
+            android:name=".CheckURAppointments"
+            android:label="@string/title_activity_check_urappointments" >
+        </activity>
+        <activity
+            android:name=".CheckURAppointmentsAdapter"
+            android:label="@string/title_activity_check_urappointments_adapter" >
+        </activity>
+        <activity
+            android:name=".WaitingListScreen"
+            android:label="@string/title_activity_waiting_list_screen" >
+        </activity>
+        <activity
+            android:name=".Appointments"
+            android:label="@string/title_activity_appointments" >
+        </activity>
+        <activity
+            android:name=".ProfessorActivity"
+            android:label="@string/title_activity_professor" >
+        </activity>
+
+        <service android:name="com.parse.PushService" />
+
+        <receiver android:name="com.parse.ParseBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.parse.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <!-- IMPORTANT: Change "com.parse.tutorials.pushnotifications" to match your app's package name. -->
+                <category android:name="com.gimbal.android.sample" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.parse.ParsePushBroadcastReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.parse.push.intent.RECEIVE" />
+                <action android:name="com.parse.push.intent.DELETE" />
+                <action android:name="com.parse.push.intent.OPEN" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="com.parse.push.notification_icon"
+            android:resource="@drawable/cupcake" />
+
+        <!-- <activity -->
+        <!-- android:name=".ProfessorAvailability" -->
+        <!-- android:label="@string/title_activity_professor_availability" > -->
+        <!-- </activity> -->
+        <activity
+            android:name=".ProfessorAvailabilityList"
+            android:label="@string/title_activity_professor_availability_list" >
+        </activity>
+        <activity
+            android:name=".ProfAvailabilityListAdapter"
+            android:label="@string/title_activity_prof_availability_list_adapter" >
+        </activity>
+        <activity
+            android:name=".UserRegistration"
+            android:label="@string/title_activity_user_registration" >
+        </activity>
+        <activity
+            android:name=".profile_picture"
+            android:label="@string/title_activity_profile_picture" >
         </activity>
     </application>
 

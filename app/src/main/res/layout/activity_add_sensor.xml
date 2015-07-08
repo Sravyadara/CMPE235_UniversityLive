@@ -4,6 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/plainscreen"
     tools:context="com.gimbal.android.sample.AddSensor">
 
        <TextView
@@ -18,11 +19,13 @@
             />
 
        <EditText
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           android:layout_width="190dp"
+           android:layout_height="40dp"
+           android:background="@drawable/textbox"
            android:inputType="textPersonName"
-           android:text="Name"
+           android:text="ID"
            android:ems="9"
+
            android:layout_alignParentTop="true"
            android:layout_toRightOf="@+id/sensorFactoryIdLabel"
            android:id="@+id/sensorFactoryIdValue"
@@ -60,8 +63,9 @@
            android:layout_column="2" />
 
        <EditText
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           android:layout_width="190dp"
+           android:layout_height="40dp"
+           android:background="@drawable/textbox"
            android:inputType="textPersonName"
            android:text="Name"
            android:ems="9"
@@ -81,8 +85,9 @@
            android:layout_column="2" />
 
        <EditText
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           android:layout_width="190dp"
+           android:layout_height="40dp"
+           android:background="@drawable/textbox"
            android:inputType="numberDecimal|numberSigned"
            android:ems="9"
            android:id="@+id/sensorLatitudeValue"
@@ -99,8 +104,9 @@
            android:layout_column="2" />
 
        <EditText
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           android:layout_width="190dp"
+           android:layout_height="40dp"
+           android:background="@drawable/textbox"
            android:inputType="numberDecimal|numberSigned"
            android:ems="9"
            android:id="@+id/sensorLongitudeValue"
@@ -141,20 +147,26 @@
    </GridLayout>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
         android:text="Submit"
         android:id="@+id/submitButton"
+        android:typeface="serif"
+        android:textSize="16dp"
+        android:background="@drawable/buttonlogin"
         android:layout_marginTop="75dp"
         android:layout_below="@+id/gridLayout2"
         android:layout_toRightOf="@+id/sensorFactoryIdLabel"
         android:layout_toEndOf="@+id/sensorFactoryIdLabel" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
         android:text="Cancel"
+        android:typeface="serif"
+        android:textSize="16dp"
         android:id="@+id/cancelButton"
+        android:background="@drawable/buttonlogin"
         android:layout_alignTop="@+id/submitButton"
         android:layout_alignRight="@+id/gridLayout2"
         android:layout_alignEnd="@+id/gridLayout2"

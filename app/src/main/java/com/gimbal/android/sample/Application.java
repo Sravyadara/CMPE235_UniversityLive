@@ -16,7 +16,8 @@ public class Application extends android.app.Application {
 
         //Gimbal.setApiKey(this, "9da1beb6-724c-4735-9e0c-e8dbabe0bdb4");
         ParseObject.registerSubclass(RegistrationDAO.class);
-        Parse.initialize(this, "ZvV2teapMUKUJPsYJ6fqIRQJUgiF3syAU012RQe4", "pLIGQb9jQW9ZcwGaD8LAvIFfcdX7gpRYf82FAYzy");
+        //Sravya Dara---Parse.initialize(this, "ZvV2teapMUKUJPsYJ6fqIRQJUgiF3syAU012RQe4", "pLIGQb9jQW9ZcwGaD8LAvIFfcdX7gpRYf82FAYzy");
+        Parse.initialize(this, "9k8UJH0jwIkxXLEWzDerAvcwdq7NmY0ch6FLXkoy", "Mnf3GCgMFEY83I5E67McRaO3776WrK1xv9f3YEne");
     }
 
 }
